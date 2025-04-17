@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Setup Instructions - Equestria.dev Intranet Home Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+<nav>
+    <a href="/">Home</a> -
+    <a href="/network.php">Network Map</a> -
+    <a href="/setup.html">Setup Instructions</a> -
+    <a href="/internet.html">Internet Access</a>
+</nav>
+<article>
+    <h1>Intranet setup instructions</h1>
+    <p>There are multiple ways to access the intranet depending on the resources you want to access through Equestria.dev's infrastructure. The recommended and only officially supported way is through Wi-Fi.</p>
+
+    <h2>Network configuration</h2>
+    <p>The first step is to configure the network. Wi-Fi or WireGuard can be used for this step, Wi-Fi being the official recommended method.</p>
+
+    <h3>Wi-Fi (recommended)</h3>
+    <p>In this setup, the network routing is as follows:</p>
+    <pre>Wi-Fi access point (10.0.2.1) -> Network router (10.0.1.1) -> Internet router (10.140.222.44) -> Edge router (192.168.1.1) -> Internet</pre>
+    <p>Make sure you are within 100 meter of a Wi-Fi access point, and that your device supports 5 GHz and WPA2-CCMP. Connect to the <b>ZephyrHeights</b> network with the password <code><b>CutePonies!2024</b></code> (please do not give out the password to unauthorized users).</p>
+    <p>In case DHCP does not function properly, please use the following network settings:</p>
+    <ul>
+        <li><b>IP address:</b> (use the one provided by your administrator)</li>
+        <li><b>Gateway:</b> 10.0.2.1</li>
+        <li><b>Primary DNS:</b> 10.0.1.1</li>
+        <li><b>Secondary DNS:</b> 10.64.0.1</li>
+    </ul>
+    <p><b>Do not</b> use an arbitrary IP address. And please note that the intranet does not use DNS through DHCP, so your device's host name does not matter.</p>
+
+    <h3>WireGuard</h3>
+    <p>In this setup, the network routing is as follows:</p>
+    <pre>WireGuard root (10.0.3.1) -> Edge router (192.168.1.1) -> Network router (10.0.1.1) -> LAN</pre>
+    <p>WireGuard access does not provide Internet connectivity yet. Any attempt to use Internet connectivity through WireGuard will be punished. To use WireGuard, you need either a configuration file provided by your administrator, or a private key that the administrators have added to the network. You also need to know the IP address you have been assigned.</p>
+    <p>The configuration file is as follows:</p>
+    <pre>[Interface]
+PrivateKey = &lt;private key&gt;
+Address = &lt;IP address&gt;/32
+DNS = 10.0.1.1
+
+[Peer]
+PublicKey = 58RmDy2gjf7BqDABWcyGplVoSlfd00kLvKChZczOqFk=
+PresharedKey = 4HQKL9jyoN8tAh55gS7bqvPCEAR0BB+7SB90Edifo2Q=
+AllowedIPs = 192.168.1.49/32
+Endpoint = equestria.dev:51820
+PersistentKeepalive = 30
+
+[Peer]
+PublicKey = yXOyHK3ahImGM/aS/fu52ate3VMGY8pBoVNX1piVhnI=
+PresharedKey = QjD25+8dnbfD4bOdEUDCWWiwUhTOMzoh+wJ39daxUJc=
+AllowedIPs = 10.0.0.0/8
+Endpoint = 192.168.1.49:51820
+PersistentKeepalive = 30</pre>
+    <p>In the Android application, you can ask your administrator to give you a configuration QR code. If you do not have a QR code or you are unable to scan it, use the following configuration settings:</p>
+    <ul>
+        <li>Click on the arrows next to "Private key" or enter the private key provided by your administrator.</li>
+        <li><b>Interface > Addresses:</b> <code>&lt;IP address&gt;/32</code></li>
+        <li><b>Interface > DNS server:</b> <code>10.0.1.1</code></li>
+        <li>Click on add peer.</li>
+        <li><b>Peer 1 > Public key:</b> <code>yXOyHK3ahImGM/aS/fu52ate3VMGY8pBoVNX1piVhnI=</code></li>
+        <li><b>Peer 1 > Pre-shared key:</b> <code>QjD25+8dnbfD4bOdEUDCWWiwUhTOMzoh+wJ39daxUJc=</code></li>
+        <li><b>Peer 1 > Persistent keepalive:</b> 30 seconds</li>
+        <li><b>Peer 1 > Endpoint:</b> <code>equestria.dev:51820</code></li>
+        <li><b>Peer 1 > Allowed IPs:</b> <code>192.168.1.49/32</code></li>
+        <li>Click on add peer again.</li>
+        <li><b>Peer 2 > Public key:</b> <code>yXOyHK3ahImGM/aS/fu52ate3VMGY8pBoVNX1piVhnI=</code></li>
+        <li><b>Peer 2 > Pre-shared key:</b> <code>QjD25+8dnbfD4bOdEUDCWWiwUhTOMzoh+wJ39daxUJc=</code></li>
+        <li><b>Peer 2 > Persistent keepalive:</b> 30 seconds</li>
+        <li><b>Peer 2 > Endpoint:</b> <code>192.168.1.49:51820</code></li>
+        <li><b>Peer 2 > Allowed IPs:</b> <code>10.0.0.0/8</code></li>
+    </ul>
+
+    <h3>Verifying the connection</h3>
+    <p>As a side note, to verify that you are correctly connected, try to ping the following devices:</p>
+    <ul>
+        <li><code>10.64.0.1</code></li>
+        <li><code>10.0.1.1</code></li>
+        <li><code>10.0.2.1</code></li>
+        <li><code>10.0.3.1</code> (this one might only work if you are using WireGuard)</li>
+    </ul>
+    <p>If any of these requests fail, your connection is not working properly. Contact your administrator for troubleshooting.</p>
+
+    <h2>Certificate authority installation</h2>
+    <p>To use internal services securely, Equestria.dev has created a certificate authority. A certificate authority is an authority capable of creating encryption certificates, used (mostly) to provide HTTPS access to websites.</p>
+    <blockquote><b>Warning:</b> Before installing any certificate authority (not necessarily just this one), make sure that the device you are getting the CA file from has not been compromised, and that you are getting the file from a reliable source. Installing a malicious CA certificate can reduce your security and allow an attacker to impersonate any website.</blockquote>
+    <p>Click <a href="/ca.crt">here</a> to download the Equestria.dev certificate authority file. Instructions to install it depend on your device and you should read the appropriate documentation, or contact your administrator, for instructions. Do note that configuring the certificate authority is essential to access the intranet websites.</p>
+    <p>To make sure the certificate is installed properly, reopen your browser and try to visit <a href="https://intra.w.corp/test.html">https://intra.w.corp/test.html</a> on the new device.</p>
+
+    <h2>Domain name (optional)</h2>
+    <p>If you would like to host services on the intranet, you will most likely need a domain name. This is not granted to all users and all devices and needs to be used sparingly. Equestria.dev can provide domain names for intranet devices to the following DNS zones:</p>
+    <ul>
+        <li>equestria.dev.</li>
+        <li>equestria.horse.</li>
+        <li>pone.eu.org.</li>
+        <li>corp.</li>
+    </ul>
+    <p>Administrators will prefer to give out domain names as a subdomain of lan.corp. The convention is to have a 4-character device ID, a 2-character user ID, followed by .lan.corp. For example, Raindrops's primary MacBook Air has the domain name mba1.rd.lan.corp. If you absolutely require a domain name at the top level of the corp. domain, or a subdomain of w.corp., you can also get one provided you have a sufficient reason.</p>
+    <p>In all cases, get in touch with your administrator if you are interested in getting an intranet domain name.</p>
+</article>
+<footer>
+    <div>© Equestria.dev - <a href="https://intra.w.corp/">intra.w.corp</a></div>
+</footer>
+</body>
+</html>

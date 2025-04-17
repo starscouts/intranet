@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Equestria.dev Intranet Home Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+<nav>
+    <a href="/">Home</a> -
+    <a href="/network.php">Network Map</a> -
+    <a href="/setup.html">Setup Instructions</a> -
+    <a href="/internet.html">Internet Access</a>
+</nav>
+<article>
+    <h1>Welcome to the Equestria.dev Intranet</h1>
+    <p>The new Equestria.dev Intranet, running on <code>10.0.0.0/8</code> (as reserved by IANA), is accessible from Equestria.dev's servers, Wi-Fi or a VPN. The server you are using right now is known as <code>10.0.2.1</code> (Wi-Fi VLAN) or <code>10.0.1.1</code> (servers VLAN). Please see the infrastructure table below for details:</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>CIDR range</th>
+                <th>VLAN</th>
+                <th>Purpose</th>
+                <th>Trusted</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>192.168.1.0/24</code></td>
+                <td>0</td>
+                <td>Edge router used to communicate with the exit node. This router is also used for the WireGuard-connected clients to communicate with the primary router.</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td><code>10.0.0.0/8</code></td>
+                <td>1</td>
+                <td>The entire Equestria.dev network. Devices must never run on this network and instead run on one of the various subnetworks that are available.</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td><code>10.0.1.0/24</code></td>
+                <td>2</td>
+                <td>The main infrastructure network, used for all the physical servers (and not for virtual machines). Client devices do not connect to this network.</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td><code>10.0.2.0/24</code></td>
+                <td>3</td>
+                <td>The network Wi-Fi devices connect to. While it behaves similarly to other networks, it has higher security in the event of a compromised device.</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td><code>10.0.3.0/24</code></td>
+                <td>4</td>
+                <td>Used for WireGuard peers. WireGuard devices run on this network since they access network resources in an unusual way that needs to be monitored.</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td><code>10.0.4.0/16</code></td>
+                <td>5</td>
+                <td>The virtualized infrastructure network, where virtual machines or containers get connected and interact together. Not for use with physical devices.</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td><code>10.64.0.0/16<br>10.128.0.0/16<br>10.140.0.0/16</code></td>
+                <td>6</td>
+                <td>This network provides access to the Internet exit node. It is used to point to Internet routers securely without knowledge of the other networks.</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td><code>10.0.5.0/24<br>10.0.6.0/23<br>10.0.8.0/21<br>10.0.16.0/20<br>10.0.32.0/19<br>10.0.64.0/18<br>10.0.128.0/17</code></td>
+                <td>-</td>
+                <td>Reserved for future use.</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td><code>10.255.0.0/16<br>10.0.255.0/24<br>10.0.0.0/24</code></td>
+                <td>-</td>
+                <td>Reserved for system use.</td>
+                <td>-</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <blockquote><b>Note:</b> The Equestria.dev network currently does not support IPv6 although the edge router at <code>192.168.1.1</code> provides support for it. There is discussion in progress to bring (limited) IPv6 support.</blockquote>
+</article>
+<footer>
+    <div>© Equestria.dev - <a href="https://intra.w.corp/">intra.w.corp</a></div>
+</footer>
+</body>
+</html>

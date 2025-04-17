@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Internet Access - Equestria.dev Intranet Home Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+<nav>
+    <a href="/">Home</a> -
+    <a href="/network.php">Network Map</a> -
+    <a href="/setup.html">Setup Instructions</a> -
+    <a href="/internet.html">Internet Access</a>
+</nav>
+<article>
+    <h1>Internet Access</h1>
+    <p>If you connect with Wi-Fi, you have Internet access through Equestria.dev's routing infrastructure. Note that, while the servers are in France, the exit node router is not in France. We are currently using routers in <b>Zurich, Switzerland</b>.</p>
+
+    <h3>Known public IP addresses</h3>
+    <p>Here is a list of all the public addresses that are known to be used by the routers:</p>
+    <ul>
+        <li><code>193.32.127.66</code></li>
+        <li><code>193.32.127.67</code></li>
+        <li><code>193.32.127.68</code></li>
+        <li><code>193.32.127.69</code></li>
+        <li><code>193.32.127.70</code></li>
+    </ul>
+    <p>Note that rotations happen randomly, so you should not rely on the public IP address staying the same. It is also possible for other people to have the same IP address, therefore it is best not to trust it for authentication. If you think we should add more servers (maybe other locations), please get in touch with your administrator.</p>
+
+    <h3>Physical link</h3>
+    <p>The exit node routers are linked to the intranet router using a WireGuard tunnel for optimized performance. IPv6 is disabled on the tunnel side, but the router should support it if we ever decide to turn it on. The internet access itself is provided by <a href="https://www.31173.se/" target="_blank">31173</a> on servers owned by <a href="https://mullvad.net/en/" target="_blank">Mullvad</a>.</p>
+
+    <h3>Why Switzerland?</h3>
+    <p>Equestria.dev is French, so choosing Switzerland for the Internet location might not make a lot of sense. However, here are some reasons why we chose Switzerland over another country (such as France):</p>
+    <ul>
+        <li>Switzerland's commitment to privacy means that government spying will be made harder (or impossible). Additionally, no data retention is required, which allows service providers to store no logs.</li>
+        <li>Political neutrality is an important subject for a service provider. Since Switzerland is neutral, censorship should not happen, leaving the internet free and open for everyone.</li>
+        <li>The internet infrastructure in Switzerland is well developped, meaning more reliability and faster speeds, even through a lot of different routers.</li>
+    </ul>
+</article>
+<footer>
+    <div>© Equestria.dev - <a href="https://intra.w.corp/">intra.w.corp</a></div>
+</footer>
+</body>
+</html>

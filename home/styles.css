@@ -1,0 +1,53 @@
+article, nav, footer {
+    background: lightyellow;
+    border: 2px solid yellow;
+    padding: 8px;
+    font-family: sans-serif;
+    max-width: 1000px;
+    margin: 16px auto;
+}
+
+pre {
+    overflow: auto;
+}
+
+html {
+    background: cornflowerblue;
+}
+
+nav, footer {
+    text-align: center;
+}
+
+footer {
+    font-style: italic;
+}
+
+*:visited {
+    color: blue;
+}
+
+a:active {
+    color: red;
+}
+
+blockquote {
+    margin: 0;
+    padding: 8px;
+    background-color: lightgoldenrodyellow;
+    border: 1px dashed yellowgreen;
+}
+
+table {
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 4px 8px;
+}
+
+thead {
+    border-bottom: 2px solid black;
+}
